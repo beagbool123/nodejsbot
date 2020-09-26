@@ -36,21 +36,21 @@ client.on('message', (message) => {
   }
 
   if(message.content == 'embed') {
-    let img = 'https://cdn.discordapp.com/icons/419671192857739264/6dccc22df4cb0051b50548627f36c09b.webp?size=256';
+    let img = 'https://cdn.discordapp.com/attachments/615494991774613506/759294495933464627/a244289a4df7601f.jpg';
     let embed = new Discord.RichEmbed()
       .setTitle('타이틀')
-      .setURL('http://www.naver.com')
-      .setAuthor('나긋해', img, 'http://www.naver.com')
+      .setURL('https://www.youtube.com/channel/UC3lQAwvx_sW8DBqcsMUwXow?view_as=subscriber%27')
+      .setAuthor('나긋해', img, 'https://www.youtube.com/channel/UC3lQAwvx_sW8DBqcsMUwXow?view_as=subscriber%27')
       .setThumbnail(img)
       .addBlankField()
-      .addField('Inline field title', 'Some value here')
-      .addField('Inline field title', 'Some value here', true)
-      .addField('Inline field title', 'Some value here', true)
-      .addField('Inline field title', 'Some value here', true)
-      .addField('Inline field title', 'Some value here1\nSome value here2\nSome value here3\n')
+      .addField('이 봇 만드는데 걸린 누적 시간', '5시간')
+      .addBlankField()
+      .addField('이 봇 만드는데 사용한 프로그래밍 언어', 'JavaScript(Node.js)', true)
+      .addBlankField()
+      .addField('이 봇 만드는데 사용한 코드의 길이', '164줄', true)
       .addBlankField()
       .setTimestamp()
-      .setFooter('나긋해가 만듬', img)
+      .setFooter('상추백불이 만듬', img)
 
     message.channel.send(embed)
   } else if(message.content == 'embed2') {
@@ -63,9 +63,9 @@ client.on('message', (message) => {
     ];
     let commandStr = '';
     let embed = new Discord.RichEmbed()
-      .setAuthor('Help of 콜라곰 BOT', helpImg)
+      .setAuthor('상추백불의 테스트용 봇', img)
       .setColor('#186de6')
-      .setFooter(`콜라곰 BOT ❤️`)
+      .setFooter(`상추백불의 테스트용 봇`)
       .setTimestamp()
     
     commandList.forEach(x => {
