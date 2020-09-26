@@ -39,30 +39,32 @@ client.on('message', (message) => {
     let img = 'https://cdn.discordapp.com/attachments/615494991774613506/759294495933464627/a244289a4df7601f.jpg';
     let embed = new Discord.RichEmbed()
       .setTitle('타이틀')
-      .setURL('https://www.youtube.com/channel/UC3lQAwvx_sW8DBqcsMUwXow?view_as=subscriber%27')
-      .setAuthor('나긋해', img, 'https://www.youtube.com/channel/UC3lQAwvx_sW8DBqcsMUwXow?view_as=subscriber%27')
+      .setURL('https://www.youtube.com/channel/UC3lQAwvx_sW8DBqcsMUwXow?view_as=subscriber%27%27')
+      .setAuthor('상추백불', img, 'https://www.youtube.com/channel/UC3lQAwvx_sW8DBqcsMUwXow?view_as=subscriber%27%27')
       .setThumbnail(img)
       .addBlankField()
-      .addField('이 봇 만드는데 걸린 누적 시간', '5시간')
+      .addField('이 봇을 만드는데 걸린 누적 시간', '7시간')
       .addBlankField()
-      .addField('이 봇 만드는데 사용한 프로그래밍 언어', 'JavaScript(Node.js)', true)
+      .addField('이 봇을 만드는데 사용한 프로그래밍 언어', 'JavaScript(Node.js)', true)
       .addBlankField()
-      .addField('이 봇 만드는데 사용한 코드의 길이', '164줄', true)
+      .addField('이 봇을 만드는데 사용한 코드의 길이', '163', true)
       .addBlankField()
       .setTimestamp()
       .setFooter('상추백불이 만듬', img)
 
     message.channel.send(embed)
   } else if(message.content == 'embed2') {
+    let helpImg = 'https://images-ext-1.discordapp.net/external/RyofVqSAVAi0H9-1yK6M8NGy2grU5TWZkLadG-rwqk0/https/i.imgur.com/EZRAPxR.png';
     let commandList = [
       {name: 'ping', desc: '현재 핑 상태'},
       {name: 'embed', desc: 'embed 예제1'},
       {name: 'embed2', desc: 'embed 예제2 (help)'},
       {name: '?전체공지', desc: 'dm으로 전체 공지 보내기'},
+      {name: '?청소 [숫자]', desc: '메세지 삭제하기'}
     ];
     let commandStr = '';
     let embed = new Discord.RichEmbed()
-      .setAuthor('상추백불의 테스트용 봇', img)
+      .setAuthor('상추백불의 테스트용 봇', helpImg)
       .setColor('#186de6')
       .setFooter(`상추백불의 테스트용 봇`)
       .setTimestamp()
