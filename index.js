@@ -1,13 +1,14 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const token = process.argv.length == 2 ? process.env.token : '';
-const welcomeChannelName = "안녕하세요";
+const token = process.argv.length == 2 ? process.env.token : "";
+const welcomeChannelName = "👋-새로운-유저";
 const byeChannelName = "안녕히가세요";
-const welcomeChannelComment = "어서오세요.";
+const welcomeChannelComment = "👋-나가는-유저";
 const byeChannelComment = "안녕히가세요.";
 
 client.on('ready', () => {
   console.log('켰다.');
+  client.user.setPresence({ game: { name: '?help를 쳐보세요.' }, status: 'online' })
 });
 
 client.on("guildMemberAdd", (member) => {
@@ -17,7 +18,7 @@ client.on("guildMemberAdd", (member) => {
 
   welcomeChannel.send(`<@${newUser.id}> ${welcomeChannelComment}\n`);
 
-  member.addRole(guild.roles.find(role => role.name == "게스트"));
+  member.addRole(guild.roles.find(role => role.name == "everyone"));
 });
 
 client.on("guildMemberRemove", (member) => {
@@ -31,10 +32,6 @@ client.on("guildMemberRemove", (member) => {
 client.on('message', (message) => {
   if(message.author.bot) return;
 
-  if(message.content == 'ping') {
-    return message.reply('이 명령어의 기능은 추가될 예정입니다');
-  }
-
   if(message.content == 'embed') {
     let img = 'https://cdn.discordapp.com/attachments/615494991774613506/759294495933464627/a244289a4df7601f.jpg';
     let embed = new Discord.RichEmbed()
@@ -43,30 +40,30 @@ client.on('message', (message) => {
       .setAuthor('상추백불', img, 'https://www.youtube.com/channel/UC3lQAwvx_sW8DBqcsMUwXow?view_as=subscriber%27%27')
       .setThumbnail(img)
       .addBlankField()
-      .addField('이 봇을 만드는데 걸린 누적 시간', '7시간')
+      .addField('이 봇 만드는데 걸린 시간', '9시간')
       .addBlankField()
-      .addField('이 봇을 만드는데 사용한 프로그래밍 언어', 'JavaScript(Node.js)', true)
+      .addField('이 봇 만드는데 사용한 프로그래밍 언어', 'JavaScript(Node.js)', true)
       .addBlankField()
-      .addField('이 봇을 만드는데 사용한 코드의 길이', '163', true)
+      .addField('이 봇 만드는데 사용한 코드의 길이', '160줄', true)
       .addBlankField()
       .setTimestamp()
       .setFooter('상추백불이 만듬', img)
 
     message.channel.send(embed)
-  } else if(message.content == 'embed2') {
+  } else if(message.content == '?help') {
     let helpImg = 'https://images-ext-1.discordapp.net/external/RyofVqSAVAi0H9-1yK6M8NGy2grU5TWZkLadG-rwqk0/https/i.imgur.com/EZRAPxR.png';
     let commandList = [
       {name: 'ping', desc: '기능 준비중'},
-      {name: 'embed', desc: 'embed 예제1'},
-      {name: 'embed2', desc: 'embed 예제2 (help)'},
-      {name: '?전체공지', desc: 'dm으로 전체 공지 보내기'},
-      {name: '?청소 [숫자]', desc: '메세지 삭제하기'}
+      {name: 'embed', desc: '상추백불 프로필'},
+      {name: 'embed2', desc: '봇 설명서'},
+      {name: '!전체공지', desc: 'dm으로 전체 공지 보내기(관리자 전용)'},
+      {name: '!청소', desc: '텍스트를 삭제함(관리자 전용)'},
     ];
     let commandStr = '';
     let embed = new Discord.RichEmbed()
-      .setAuthor('상추백불의 테스트용 봇', helpImg)
+      .setAuthor('상추백불의 테스트용 봇 설명서', helpImg)
       .setColor('#186de6')
-      .setFooter(`상추백불의 테스트용 봇`)
+      .setFooter(`상추백불의 테스트용 봇 설명서`)
       .setTimestamp()
     
     commandList.forEach(x => {
@@ -102,7 +99,7 @@ client.on('message', (message) => {
     if(isNum && (clearLine <= 0 || 100 < clearLine)) {
       message.channel.send("1부터 100까지의 숫자만 입력해주세요.")
       return;
-    } else if(!isNum) { // c @나긋해 3
+    } else if(!isNum) { // c @상추백불 3
       if(message.content.split('<@').length == 2) {
         if(isNaN(message.content.split(' ')[2])) return;
 
