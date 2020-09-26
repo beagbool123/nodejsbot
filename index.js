@@ -38,7 +38,7 @@ client.on('message', (message) => {
   if(message.content == 'embed') {
     let img = 'https://cdn.discordapp.com/attachments/615494991774613506/759294495933464627/a244289a4df7601f.jpg';
     let embed = new Discord.RichEmbed()
-      .setTitle('타이틀')
+      .setTitle('상추백불')
       .setURL('https://www.youtube.com/channel/UC3lQAwvx_sW8DBqcsMUwXow?view_as=subscriber%27%27')
       .setAuthor('상추백불', img, 'https://www.youtube.com/channel/UC3lQAwvx_sW8DBqcsMUwXow?view_as=subscriber%27%27')
       .setThumbnail(img)
