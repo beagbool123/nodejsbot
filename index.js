@@ -32,7 +32,7 @@ client.on('message', (message) => {
   if(message.author.bot) return;
 
   if(message.content == 'ping') {
-    return message.reply('pong');
+    return message.reply('이 명령어의 기능은 추가될 예정입니다');
   }
 
   if(message.content == 'embed') {
@@ -56,7 +56,7 @@ client.on('message', (message) => {
   } else if(message.content == 'embed2') {
     let helpImg = 'https://images-ext-1.discordapp.net/external/RyofVqSAVAi0H9-1yK6M8NGy2grU5TWZkLadG-rwqk0/https/i.imgur.com/EZRAPxR.png';
     let commandList = [
-      {name: 'ping', desc: '현재 핑 상태'},
+      {name: 'ping', desc: '기능 준비중'},
       {name: 'embed', desc: 'embed 예제1'},
       {name: 'embed2', desc: 'embed 예제2 (help)'},
       {name: '?전체공지', desc: 'dm으로 전체 공지 보내기'},
