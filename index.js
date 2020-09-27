@@ -5,8 +5,9 @@ const moment = require("moment");
 require("moment-duration-format");
 const welcomeChannelName = "👋-새로운-유저";
 const byeChannelName = "👋-나가는-유저";
-const welcomeChannelComment = "안녕하세요.";
+const welcomeChannelComment = "어서오세요.";
 const byeChannelComment = "안녕히가세요.";
+
 client.on('ready', () => {
   console.log('켰다.');
   client.user.setPresence({ game: { name: '?help를 쳐보세요.' }, status: 'online' })
@@ -35,11 +36,11 @@ client.on('message', (message) => {
 
   if(message.content == '?서버상태') {
     let embed = new Discord.RichEmbed()
-    let img = 'https://cdn.discordapp.com/icons/419671192857739264/6dccc22df4cb0051b50548627f36c09b.webp?size=256';
+    let img = 'https://cdn.discordapp.com/attachments/615494991774613506/759294495933464627/a244289a4df7601f.jpg';
     var duration = moment.duration(client.uptime).format(" D [일], H [시간], m [분], s [초]");
     embed.setColor('#186de6')
     embed.setAuthor('서버 상태', img)
-    embed.setFooter(`Copyright 2020. BeagBool. All rights reversed.`)
+    embed.setFooter(`Copyright 2020. BeagBool. All rights reversed`)
     embed.addBlankField()
     embed.addField('RAM usage',    `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} MB`, true);
     embed.addField('running time', `${duration}`, true);
@@ -48,26 +49,40 @@ client.on('message', (message) => {
     // embed.addField('channel',      `${client.channels.size.toLocaleString()}`, true);
     embed.addField('Discord.js',   `v${Discord.version}`, true);
     embed.addField('Node',         `${process.version}`, true);
+    
+    let arr = client.guilds.array();
+    let list = '';
+    list = `\`\`\`css\n`;
+    
+    for(let i=0;i<arr.length;i++) {
+      // list += `${arr[i].name} - ${arr[i].id}\n`
+      list += `${arr[i].name}\n`
+    }
+    list += `\`\`\`\n`
+    embed.addField('list:',        `${list}`);
+
+    embed.setTimestamp()
+    message.channel.send(embed);
   }
 
   if(message.content == '?개발자') {
-    let img = 'https://cdn.discordapp.com/icons/419671192857739264/6dccc22df4cb0051b50548627f36c09b.webp?size=256';
+    let img = 'https://cdn.discordapp.com/attachments/615494991774613506/759294495933464627/a244289a4df7601f.jpg';
     let embed = new Discord.RichEmbed()
       .setTitle('상추백불')
-      .setURL('http://www.naver.com')
-      .setAuthor('나긋해', img, 'http://www.naver.com')
+      .setURL('https://www.youtube.com/channel/UC3lQAwvx_sW8DBqcsMUwXow?view_as=subscriber%27%27')
+      .setAuthor('상추백불', img, 'https://www.youtube.com/channel/UC3lQAwvx_sW8DBqcsMUwXow?view_as=subscriber%27%27')
       .setThumbnail(img)
       .addBlankField()
       .addField('개발자', '상추백불')
       .addBlankField()
-      .addField('이 봇을 만드는데 걸린 시간', '12시간', true)
+      .addField('이 봇을 만드는데 걸린 시간', '13시간', true)
       .addBlankField()
-      .addField('이 봇을 만드는데 걸린 프로그래밍 언어', 'JavaScript', true)
+      .addField('이 봇을 만드는데 사용한 프로그래밍 언어', 'JavaScript(Node.js)', true)
       .addBlankField()
-      .addField('이 봇을 만드는데 사용한 코드의 길이', '236', true)
+      .addField('이 봇을 만드는데 사용한 코드의 길이', '253줄', true)
       .addBlankField()
       .setTimestamp()
-      .setFooter('Copyright 2020. BeagBool. All rights reversed.', img)
+      .setFooter('Copyright 2020. BeagBool. All rights reversed', img)
 
     message.channel.send(embed)
   } else if(message.content == '?help') {
@@ -75,17 +90,17 @@ client.on('message', (message) => {
     let commandList = [
       {name: '?help', desc: '봇 설명서'},
       {name: '?개발자', desc: '개발자 프로필'},
-      {name: '?초대코드', desc: '해당 서버의 초대 코드 표시'},
-      {name: '?초대코드2', desc: '봇이 들어가있는 모든 채널의 초대 코드 표시(관리자 전용)'},
-      {name: '?전체공지', desc: 'dm으로 전체 공지 보내기(관리자 전용'},
-      {name: '?전체공지2', desc: 'dm으로 embed 형식인 전체 공지 보내기(관리자 전용'},
-      {name: '?청소', desc: '채팅 삭제(관리자 전용)'},
+      {name: '?초대코드', desc: '해당 채널의 초대 코드 표기(관리자 전용)'},
+      {name: '?초대코드2', desc: '봇이 들어가있는 모든 채널의 초대 코드 표기(관리자 전용)'},
+      {name: '?전체공지', desc: 'dm으로 전체 공지 보내기(관리자 전용)'},
+      {name: '?전체공지2', desc: 'dm으로 전체 embed 형식으로 공지 보내기(관리자 전용)'},
+      {name: '?청소', desc: '텍스트 지움(관리자 전용)'},
     ];
     let commandStr = '';
     let embed = new Discord.RichEmbed()
-      .setAuthor('상추백불의 테스트용 봇 설명서', helpImg)
+      .setAuthor('테스트용 봇 사용 설명서', helpImg)
       .setColor('#186de6')
-      .setFooter(`Copyright 2020. BeagBool. All rights reversed.`)
+      .setFooter(`Copyright 2020. BeagBool. All rights reversed`)
       .setTimestamp()
     
     commandList.forEach(x => {
@@ -125,7 +140,7 @@ client.on('message', (message) => {
     if(message.member != null) { // 채널에서 공지 쓸 때
       let contents = message.content.slice('?전체공지2'.length);
       let embed = new Discord.RichEmbed()
-        .setAuthor('전체 공지')
+        .setAuthor('공지')
         .setColor('#186de6')
         .setFooter(`Copyright 2020. BeagBool. All rights reversed`)
         .setTimestamp()
