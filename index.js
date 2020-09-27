@@ -2,8 +2,8 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const token = process.argv.length == 2 ? process.env.token : "";
 const welcomeChannelName = "👋-새로운-유저";
-const byeChannelName = "안녕히가세요";
-const welcomeChannelComment = "👋-나가는-유저";
+const byeChannelName = "👋-나가는-유저";
+const welcomeChannelComment = "안녕하세요.";
 const byeChannelComment = "안녕히가세요.";
 
 client.on('ready', () => {
@@ -32,38 +32,36 @@ client.on("guildMemberRemove", (member) => {
 client.on('message', (message) => {
   if(message.author.bot) return;
 
-  if(message.content == 'embed') {
+  if(message.content == '?developer') {
     let img = 'https://cdn.discordapp.com/attachments/615494991774613506/759294495933464627/a244289a4df7601f.jpg';
     let embed = new Discord.RichEmbed()
-      .setTitle('상추백불')
+      .setTitle('타이틀')
       .setURL('https://www.youtube.com/channel/UC3lQAwvx_sW8DBqcsMUwXow?view_as=subscriber%27%27')
       .setAuthor('상추백불', img, 'https://www.youtube.com/channel/UC3lQAwvx_sW8DBqcsMUwXow?view_as=subscriber%27%27')
       .setThumbnail(img)
       .addBlankField()
-      .addField('이 봇 만드는데 걸린 시간', '9시간')
-      .addBlankField()
-      .addField('이 봇 만드는데 사용한 프로그래밍 언어', 'JavaScript(Node.js)', true)
-      .addBlankField()
-      .addField('이 봇 만드는데 사용한 코드의 길이', '160줄', true)
+      .addField('이 봇을 만드는데 걸린 시간', '11시간')
+      .addField('이 봇을 만드는데 사용한 프로그래밍 언어', 'JavaScript(Node.js)', true)
+      .addField('이 봇을 만드는데 쓴 코드의 길이', '171줄', true)
       .addBlankField()
       .setTimestamp()
-      .setFooter('상추백불이 만듬', img)
+      .setFooter('Copyright 2020. BeagBool. All rights resersed.', img)
 
     message.channel.send(embed)
   } else if(message.content == '?help') {
     let helpImg = 'https://images-ext-1.discordapp.net/external/RyofVqSAVAi0H9-1yK6M8NGy2grU5TWZkLadG-rwqk0/https/i.imgur.com/EZRAPxR.png';
     let commandList = [
-      {name: 'ping', desc: '기능 준비중'},
-      {name: 'embed', desc: '상추백불 프로필'},
-      {name: 'embed2', desc: '봇 설명서'},
-      {name: '!전체공지', desc: 'dm으로 전체 공지 보내기(관리자 전용)'},
-      {name: '!청소', desc: '텍스트를 삭제함(관리자 전용)'},
+      {name: '?help', desc: '봇 설명서'},
+      {name: '?developer', desc: '봇 개발자의 프로필'},
+      {name: '?전체공지', desc: 'dm으로 전체 공지 보내기(관리자 전용)'},
+      {name: '?청소', desc: '텍스트 지움'},
+      {name: '?초대', desc: '서버 초대 코드 표기'},
     ];
     let commandStr = '';
     let embed = new Discord.RichEmbed()
-      .setAuthor('상추백불의 테스트용 봇 설명서', helpImg)
+      .setAuthor('상추백불의 테스트용 봇', helpImg)
       .setColor('#186de6')
-      .setFooter(`상추백불의 테스트용 봇 설명서`)
+      .setFooter(`Copyright 2020. BeagBool. All rights resersed.`)
       .setTimestamp()
     
     commandList.forEach(x => {
@@ -73,6 +71,11 @@ client.on('message', (message) => {
     embed.addField('Commands: ', commandStr);
 
     message.channel.send(embed)
+  } else if(message.content == '?초대코드') {
+    message.guild.channels.get(message.channel.id).createInvite({maxAge: 0}) // maxAge: 0은 무한이라는 의미, maxAge부분을 지우면 24시간으로 설정됨
+      .then(invite => {
+        message.channel.send(invite.url)
+      });
   }
 
   if(message.content.startsWith('?전체공지')) {
@@ -99,7 +102,7 @@ client.on('message', (message) => {
     if(isNum && (clearLine <= 0 || 100 < clearLine)) {
       message.channel.send("1부터 100까지의 숫자만 입력해주세요.")
       return;
-    } else if(!isNum) { // c @상추백불 3
+    } else if(!isNum) { // c @나긋해 3
       if(message.content.split('<@').length == 2) {
         if(isNaN(message.content.split(' ')[2])) return;
 
