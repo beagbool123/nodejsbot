@@ -52,10 +52,10 @@ client.on('message', (message) => {
     let helpImg = 'https://images-ext-1.discordapp.net/external/RyofVqSAVAi0H9-1yK6M8NGy2grU5TWZkLadG-rwqk0/https/i.imgur.com/EZRAPxR.png';
     let commandList = [
       {name: '?help', desc: '봇 설명서'},
-      {name: '?developer', desc: '봇 개발자의 프로필'},
+      {name: '?개발자', desc: '봇 개발자의 프로필'},
+      {name: '?초대코드', desc: '이 서버의 초대코드를 표시'},
       {name: '?전체공지', desc: 'dm으로 전체 공지 보내기(관리자 전용)'},
-      {name: '?청소', desc: '텍스트 지움'},
-      {name: '?초대', desc: '서버 초대 코드 표기'},
+      {name: '?청소', desc: '텍스트 지움(관리자 전용)'},
     ];
     let commandStr = '';
     let embed = new Discord.RichEmbed()
